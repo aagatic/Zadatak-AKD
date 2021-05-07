@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="knjigeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="autor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="knjigas" Relationship="Self.FK_knjiga_autor" FromRole="autor" ToRole="knjiga" />
+  </EntityType>
+  <EntityType Name="knjiga">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="godina_izdanja" Type="Int16" Nullable="false" />
+    <Property Name="autorID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="autor" Relationship="Self.FK_knjiga_autor" FromRole="knjiga" ToRole="autor" />
+  </EntityType>
+  <Association Name="FK_knjiga_autor">
+    <End Role="autor" Type="Self.autor" Multiplicity="1" />
+    <End Role="knjiga" Type="Self.knjiga" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="autor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="knjiga">
+        <PropertyRef Name="autorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="knjigeEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="autors" EntityType="Self.autor" />
+    <EntitySet Name="knjigas" EntityType="Self.knjiga" />
+    <AssociationSet Name="FK_knjiga_autor" Association="Self.FK_knjiga_autor">
+      <End Role="autor" EntitySet="autors" />
+      <End Role="knjiga" EntitySet="knjigas" />
+    </AssociationSet>
+    <EntitySet Name="Logins" EntityType="knjigeModel.Login" />
+  </EntityContainer>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

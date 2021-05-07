@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="knjigeModelStoreContainer" CdmEntityContainer="knjigeEntities1">
+    <EntitySetMapping Name="autors">
+      <EntityTypeMapping TypeName="knjigeModel.autor">
+        <MappingFragment StoreEntitySet="autor">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ime" ColumnName="ime" />
+          <ScalarProperty Name="prezime" ColumnName="prezime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="knjigas">
+      <EntityTypeMapping TypeName="knjigeModel.knjiga">
+        <MappingFragment StoreEntitySet="knjiga">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="naziv" ColumnName="naziv" />
+          <ScalarProperty Name="godina_izdanja" ColumnName="godina_izdanja" />
+          <ScalarProperty Name="autorID" ColumnName="autorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logins">
+      <EntityTypeMapping TypeName="knjigeModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

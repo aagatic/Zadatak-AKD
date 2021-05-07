@@ -1,0 +1,50 @@
+﻿@model WebApplication1.Models.knjiga
+
+@{
+    ViewBag.Title = "Details";
+   
+}
+
+<h2>Detalji</h2>
+
+<div>
+    <h4>knjiga</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.godina_izdanja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.godina_izdanja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.autor.ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.autor.ime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.autor.prezime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.autor.prezime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Uredi", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Vrati na listu", "Index")
+</p>

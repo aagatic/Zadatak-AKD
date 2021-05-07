@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="knjigeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="autor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ime" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="prezime" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="knjiga">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="naziv" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="godina_izdanja" Type="smallint" Nullable="false" />
+    <Property Name="autorID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_autor_autor">
+    <End Role="autor" Type="Self.autor" Multiplicity="1" />
+    <End Role="autor1" Type="Self.autor" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="autor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="autor1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_autor_autor1">
+    <End Role="autor" Type="Self.autor" Multiplicity="1" />
+    <End Role="autor1" Type="Self.autor" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="autor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="autor1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_knjiga_autor">
+    <End Role="autor" Type="Self.autor" Multiplicity="1" />
+    <End Role="knjiga" Type="Self.knjiga" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="autor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="knjiga">
+        <PropertyRef Name="autorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="knjigeModelStoreContainer">
+    <EntitySet Name="autor" EntityType="Self.autor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="knjiga" EntityType="Self.knjiga" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_autor_autor" Association="Self.FK_autor_autor">
+      <End Role="autor" EntitySet="autor" />
+      <End Role="autor1" EntitySet="autor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_autor_autor1" Association="Self.FK_autor_autor1">
+      <End Role="autor" EntitySet="autor" />
+      <End Role="autor1" EntitySet="autor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_knjiga_autor" Association="Self.FK_knjiga_autor">
+      <End Role="autor" EntitySet="autor" />
+      <End Role="knjiga" EntitySet="knjiga" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
